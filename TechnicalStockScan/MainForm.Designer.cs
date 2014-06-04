@@ -33,7 +33,7 @@ namespace TechnicalStockScan
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnStockMovement = new System.Windows.Forms.Button();
             this.btnStockCount = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -65,15 +65,15 @@ namespace TechnicalStockScan
             this.btnStockCount.Text = "Stocktelling";
             this.btnStockCount.Click += new System.EventHandler(this.btnStockCount_Click);
             // 
-            // btnClose
+            // btnLogout
             // 
-            this.btnClose.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular);
-            this.btnClose.Location = new System.Drawing.Point(29, 235);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(180, 40);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Afsluiten";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnLogout.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular);
+            this.btnLogout.Location = new System.Drawing.Point(29, 235);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(180, 40);
+            this.btnLogout.TabIndex = 5;
+            this.btnLogout.Text = "Uitloggen";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // MainForm
             // 
@@ -81,7 +81,7 @@ namespace TechnicalStockScan
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(238, 295);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnStockCount);
             this.Controls.Add(this.btnStockMovement);
             this.Controls.Add(this.lblTitle);
@@ -95,7 +95,7 @@ namespace TechnicalStockScan
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnStockMovement;
         private System.Windows.Forms.Button btnStockCount;
-        private System.Windows.Forms.Button btnClose;
+        private Button btnLogout;
 
     }
 }

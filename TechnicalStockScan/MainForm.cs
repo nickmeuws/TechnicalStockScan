@@ -14,18 +14,18 @@ namespace TechnicalStockScan
     {
         public string CurrentUser { get; set; }
 
-        public StockServiceClient Service { get; private set; }
-
         private LoginForm loginForm;
 
         public MainForm()
         {
             InitializeComponent();
 
-            Service = new StockServiceClient();
-
             loginForm = new LoginForm(this);
-            loginForm.ShowDialog();
+            var result = loginForm.ShowDialog();
+            if (result == DialogResult.Cancel)
+            {
+                this.Close();
+            }
         }
 
         private void btnStockMovement_Click(object sender, EventArgs e)
@@ -45,9 +45,15 @@ namespace TechnicalStockScan
             SetHHTaskBar();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
-            this.Close();
+            CurrentUser = string.Empty;
+            loginForm = new LoginForm(this);
+            var result = loginForm.ShowDialog();
+            if (result == DialogResult.Cancel) 
+            {
+                this.Close();
+            }
         }
     }
 }

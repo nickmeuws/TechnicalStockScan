@@ -19,15 +19,17 @@ namespace TechnicalStockScan
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
-            ParentForm.Close();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (ParentForm.Service.AuthenticateUser(txtUserName.Text.Trim(), txtPassword.Text))
+            StockServiceClient service = new StockServiceClient();
+            if (service.AuthenticateUser(txtUserName.Text.Trim(), txtPassword.Text))
             {
                 ParentForm.CurrentUser = txtUserName.Text.Trim();
+                this.DialogResult = DialogResult.OK;
                 BackToParent();
             }
             else

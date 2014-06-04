@@ -12,8 +12,6 @@ namespace TechnicalStockScan
 {
     public partial class ScanForm : ChildForm
     {
-        private MODE mode;
-
         // All the barcode scanner - related operations in this sample would be carried out  
         //  by using this reference of myScanSampleAPI which is an instance of the class 
         //  ScanSampleAPI. Will be initialized later in the code.
@@ -30,13 +28,17 @@ namespace TechnicalStockScan
         //The last status information received from the scanner.
         private Symbol.Barcode.States prevState = Symbol.Barcode.States.ERROR;
 
-        public enum MODE { StockMovement = 1, StockCount = 2 };
+        private StockServiceClient service = new StockServiceClient();
+
+        public enum MODE { StockMovement = 1, StockCount = 2 }
+        private MODE mode;
 
         public ScanForm(MainForm parent, MODE mode)
         {
+            this.mode = mode;
+            
             InitializeComponent();
             this.ParentForm = parent;
-            this.mode = mode;
 
             setModeDependentLayout();
 
@@ -84,13 +86,13 @@ namespace TechnicalStockScan
                         txtAmount.Visible = true;
                         lblAmountUOM.Visible = true;
 
-                        ddlCostPlace.DataSource = ParentForm.Service.GetCostPlaces();
+                        ddlCostPlace.DataSource = service.GetCostPlaces();
                         ddlCostPlace.ValueMember = "Id";
                         ddlCostPlace.DisplayMember = "Name";
 
                         break;
                     }
-                case MODE.StockCount: 
+                case MODE.StockCount:
                     {
                         lblNewStock.Visible = true;
                         txtNewStock.Visible = true;
@@ -103,7 +105,7 @@ namespace TechnicalStockScan
                         lblAmountUOM.Visible = false;
 
                         break;
-                    }   
+                    }
             }
         }
 
@@ -228,7 +230,7 @@ namespace TechnicalStockScan
         /// </summary>
         private void HandleData(Symbol.Barcode.ReaderData TheReaderData)
         {
-            StockItem item = ParentForm.Service.GetStockItem(TheReaderData.Text);
+            StockItem item = service.GetStockItem(TheReaderData.Text);
 
             if (item != null)
             {
@@ -237,7 +239,7 @@ namespace TechnicalStockScan
                 lblCurrentStockUOM.Text = item.UOM;
                 lblAmountUOM.Text = item.UOM;
                 lblNewStockUOM.Text = item.UOM;
-                lblCurrentStock.Text = (item.StockQuantity != null ? item.StockQuantity.ToString():"0");
+                lblCurrentStock.Text = (item.StockQuantity != null ? ((decimal)item.StockQuantity).ToString("0.####################"):"0");
             }
             else
             {
@@ -252,16 +254,60 @@ namespace TechnicalStockScan
             {
                 case MODE.StockMovement:
                     {
-                        ParentForm.Service.Book(lblNo.Text, Convert.ToDecimal(txtAmount.Text));
+                        decimal currentStock = Convert.ToDecimal(lblCurrentStock.Text);
+                        int costplaceId = Convert.ToInt32(ddlCostPlace.SelectedValue);
+                        decimal quantity = Convert.ToDecimal(txtAmount.Text);
+                        service.BookStockMovement(lblNo.Text, lblDescription.Text, currentStock, costplaceId, quantity, lblAmountUOM.Text, ParentForm.CurrentUser);
+
+                        MessageBox.Show("Stockbeweging geboekt", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
+                        ClearAllValues();
 
                         break;
                     }
                 case MODE.StockCount:
                     {
+                        decimal currentStock = Convert.ToDecimal(lblCurrentStock.Text);
+                        decimal newStock = Convert.ToDecimal(txtNewStock.Text);
+
+                        if (newStock != currentStock)
+                        {
+                            var result = MessageBox.Show("Bent u zeker?", "Bevestiging", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                            if (result == DialogResult.Yes)
+                            {
+                                service.BookStockCount(lblNo.Text, lblDescription.Text, currentStock, newStock, lblNewStockUOM.Text, ParentForm.CurrentUser);
+
+                                MessageBox.Show("Stocktelling geboekt", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
+                                ClearAllValues();
+                            }
+                            else if (result == DialogResult.No)
+                            {
+                                MessageBox.Show("Stocktelling niet geboekt", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
+                            }
+                        }
+                        else
+                        {
+                            service.BookStockCount(lblNo.Text, lblDescription.Text, currentStock, newStock, lblNewStockUOM.Text, ParentForm.CurrentUser);
+
+                            MessageBox.Show("Stocktelling geboekt", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
+                            ClearAllValues();
+                        }
 
                         break;
-                    }   
+                    }
             }
+        }
+
+        private void ClearAllValues()
+        {
+            lblNo.Text = string.Empty;
+            lblDescription.Text = string.Empty;
+            lblCurrentStock.Text = string.Empty;
+            if(ddlCostPlace.Visible)
+            {
+                ddlCostPlace.SelectedIndex = 0;
+            }
+            txtAmount.Text = string.Empty;
+            txtNewStock.Text = string.Empty;
         }
     }
 }

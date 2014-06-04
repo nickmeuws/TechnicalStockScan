@@ -70,6 +70,7 @@
             // 
             // label1
             // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(3, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 20);
@@ -77,6 +78,7 @@
             // 
             // label2
             // 
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(3, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
@@ -84,6 +86,7 @@
             // 
             // label3
             // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(3, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 36);
@@ -91,6 +94,7 @@
             // 
             // lblCostPlace
             // 
+            this.lblCostPlace.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblCostPlace.Location = new System.Drawing.Point(3, 152);
             this.lblCostPlace.Name = "lblCostPlace";
             this.lblCostPlace.Size = new System.Drawing.Size(64, 34);
@@ -98,6 +102,7 @@
             // 
             // lblAmount
             // 
+            this.lblAmount.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblAmount.Location = new System.Drawing.Point(3, 187);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(51, 40);
@@ -105,6 +110,7 @@
             // 
             // lblNewStock
             // 
+            this.lblNewStock.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblNewStock.Location = new System.Drawing.Point(3, 159);
             this.lblNewStock.Name = "lblNewStock";
             this.lblNewStock.Size = new System.Drawing.Size(64, 34);
@@ -125,6 +131,7 @@
             this.lblCurrentStock.Name = "lblCurrentStock";
             this.lblCurrentStock.Size = new System.Drawing.Size(119, 20);
             this.lblCurrentStock.Text = "label7";
+            this.lblCurrentStock.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblCurrentStockUOM
             // 

@@ -7,7 +7,7 @@
 //     de code wordt gegenereerd.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using TechnicalStockScan.Config;
+
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -22,7 +22,7 @@ public interface IStockService
     
     StockItem GetStockItem(string code);
     
-    CostPlaceDTO[] GetCostPlaces();
+    CostPlace[] GetCostPlaces();
     
     void BookStockMovement(string articleNo, string description, decimal currentStock, int costPlaceId, decimal quantity, string unitOfMeasure, string user);
     
@@ -130,18 +130,36 @@ public partial class CompositeType
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService.DTO")]
-public partial class CostPlaceDTO
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+public partial class User
 {
+    
+    private Booking[] bookingsField;
     
     private int idField;
     
     private bool idFieldSpecified;
     
-    private string nameField;
+    private string passwordField;
+    
+    private string userNameField;
     
     /// <opmerkingen/>
-    [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=0)]
+    public Booking[] Bookings
+    {
+        get
+        {
+            return this.bookingsField;
+        }
+        set
+        {
+            this.bookingsField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=1)]
     public int Id
     {
         get
@@ -169,7 +187,531 @@ public partial class CostPlaceDTO
     }
     
     /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+    public string Password
+    {
+        get
+        {
+            return this.passwordField;
+        }
+        set
+        {
+            this.passwordField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+    public string UserName
+    {
+        get
+        {
+            return this.userNameField;
+        }
+        set
+        {
+            this.userNameField = value;
+        }
+    }
+}
+
+/// <opmerkingen/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("NetCFSvcUtil", "3.5.0.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+public partial class Booking
+{
+    
+    private string articleDescriptionField;
+    
+    private string articleNoField;
+    
+    private BookingType bookingTypeField;
+    
+    private CostPlace costPlaceField;
+    
+    private System.Nullable<int> costPlaceIdField;
+    
+    private bool costPlaceIdFieldSpecified;
+    
+    private decimal currentStockField;
+    
+    private bool currentStockFieldSpecified;
+    
+    private int idField;
+    
+    private bool idFieldSpecified;
+    
+    private System.Nullable<decimal> newStockField;
+    
+    private bool newStockFieldSpecified;
+    
+    private System.Nullable<decimal> quantityField;
+    
+    private bool quantityFieldSpecified;
+    
+    private System.DateTime timeStampField;
+    
+    private bool timeStampFieldSpecified;
+    
+    private int typeIdField;
+    
+    private bool typeIdFieldSpecified;
+    
+    private string unitOfMeasureField;
+    
+    private User userField;
+    
+    private int userIdField;
+    
+    private bool userIdFieldSpecified;
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
+    public string ArticleDescription
+    {
+        get
+        {
+            return this.articleDescriptionField;
+        }
+        set
+        {
+            this.articleDescriptionField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+    public string ArticleNo
+    {
+        get
+        {
+            return this.articleNoField;
+        }
+        set
+        {
+            this.articleNoField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+    public BookingType BookingType
+    {
+        get
+        {
+            return this.bookingTypeField;
+        }
+        set
+        {
+            this.bookingTypeField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
+    public CostPlace CostPlace
+    {
+        get
+        {
+            return this.costPlaceField;
+        }
+        set
+        {
+            this.costPlaceField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+    public System.Nullable<int> CostPlaceId
+    {
+        get
+        {
+            return this.costPlaceIdField;
+        }
+        set
+        {
+            this.costPlaceIdField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool CostPlaceIdSpecified
+    {
+        get
+        {
+            return this.costPlaceIdFieldSpecified;
+        }
+        set
+        {
+            this.costPlaceIdFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+    public decimal CurrentStock
+    {
+        get
+        {
+            return this.currentStockField;
+        }
+        set
+        {
+            this.currentStockField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool CurrentStockSpecified
+    {
+        get
+        {
+            return this.currentStockFieldSpecified;
+        }
+        set
+        {
+            this.currentStockFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+    public int Id
+    {
+        get
+        {
+            return this.idField;
+        }
+        set
+        {
+            this.idField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool IdSpecified
+    {
+        get
+        {
+            return this.idFieldSpecified;
+        }
+        set
+        {
+            this.idFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=7)]
+    public System.Nullable<decimal> NewStock
+    {
+        get
+        {
+            return this.newStockField;
+        }
+        set
+        {
+            this.newStockField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool NewStockSpecified
+    {
+        get
+        {
+            return this.newStockFieldSpecified;
+        }
+        set
+        {
+            this.newStockFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
+    public System.Nullable<decimal> Quantity
+    {
+        get
+        {
+            return this.quantityField;
+        }
+        set
+        {
+            this.quantityField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool QuantitySpecified
+    {
+        get
+        {
+            return this.quantityFieldSpecified;
+        }
+        set
+        {
+            this.quantityFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+    public System.DateTime TimeStamp
+    {
+        get
+        {
+            return this.timeStampField;
+        }
+        set
+        {
+            this.timeStampField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TimeStampSpecified
+    {
+        get
+        {
+            return this.timeStampFieldSpecified;
+        }
+        set
+        {
+            this.timeStampFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+    public int TypeId
+    {
+        get
+        {
+            return this.typeIdField;
+        }
+        set
+        {
+            this.typeIdField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool TypeIdSpecified
+    {
+        get
+        {
+            return this.typeIdFieldSpecified;
+        }
+        set
+        {
+            this.typeIdFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=11)]
+    public string UnitOfMeasure
+    {
+        get
+        {
+            return this.unitOfMeasureField;
+        }
+        set
+        {
+            this.unitOfMeasureField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=12)]
+    public User User
+    {
+        get
+        {
+            return this.userField;
+        }
+        set
+        {
+            this.userField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+    public int UserId
+    {
+        get
+        {
+            return this.userIdField;
+        }
+        set
+        {
+            this.userIdField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool UserIdSpecified
+    {
+        get
+        {
+            return this.userIdFieldSpecified;
+        }
+        set
+        {
+            this.userIdFieldSpecified = value;
+        }
+    }
+}
+
+/// <opmerkingen/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("NetCFSvcUtil", "3.5.0.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+public partial class BookingType
+{
+    
+    private Booking[] bookingsField;
+    
+    private string descriptionField;
+    
+    private int idField;
+    
+    private bool idFieldSpecified;
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=0)]
+    public Booking[] Bookings
+    {
+        get
+        {
+            return this.bookingsField;
+        }
+        set
+        {
+            this.bookingsField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=1)]
+    public string Description
+    {
+        get
+        {
+            return this.descriptionField;
+        }
+        set
+        {
+            this.descriptionField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+    public int Id
+    {
+        get
+        {
+            return this.idField;
+        }
+        set
+        {
+            this.idField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool IdSpecified
+    {
+        get
+        {
+            return this.idFieldSpecified;
+        }
+        set
+        {
+            this.idFieldSpecified = value;
+        }
+    }
+}
+
+/// <opmerkingen/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("NetCFSvcUtil", "3.5.0.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+public partial class CostPlace
+{
+    
+    private Booking[] bookingsField;
+    
+    private int idField;
+    
+    private bool idFieldSpecified;
+    
+    private string nameField;
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Order=0)]
+    public Booking[] Bookings
+    {
+        get
+        {
+            return this.bookingsField;
+        }
+        set
+        {
+            this.bookingsField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+    public int Id
+    {
+        get
+        {
+            return this.idField;
+        }
+        set
+        {
+            this.idField = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    public bool IdSpecified
+    {
+        get
+        {
+            return this.idFieldSpecified;
+        }
+        set
+        {
+            this.idFieldSpecified = value;
+        }
+    }
+    
+    /// <opmerkingen/>
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
     public string Name
     {
         get
@@ -195,8 +737,6 @@ public partial class StockItem
     private string descriptionField;
     
     private string no_Field;
-    
-    private string shelf_No_Field;
     
     private System.Nullable<decimal> stockQuantityField;
     
@@ -234,20 +774,6 @@ public partial class StockItem
     
     /// <opmerkingen/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-    public string Shelf_No_
-    {
-        get
-        {
-            return this.shelf_No_Field;
-        }
-        set
-        {
-            this.shelf_No_Field = value;
-        }
-    }
-    
-    /// <opmerkingen/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
     public System.Nullable<decimal> StockQuantity
     {
         get
@@ -275,7 +801,7 @@ public partial class StockItem
     }
     
     /// <opmerkingen/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
     public string UOM
     {
         get
@@ -425,14 +951,14 @@ public partial class GetCostPlacesResponse
 {
     
     [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=0)]
-    [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService.DTO")]
-    public CostPlaceDTO[] GetCostPlacesResult;
+    [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+    public CostPlace[] GetCostPlacesResult;
     
     public GetCostPlacesResponse()
     {
     }
     
-    public GetCostPlacesResponse(CostPlaceDTO[] GetCostPlacesResult)
+    public GetCostPlacesResponse(CostPlace[] GetCostPlacesResult)
     {
         this.GetCostPlacesResult = GetCostPlacesResult;
     }
@@ -546,7 +1072,7 @@ public partial class BookStockCountResponse
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientBase<IStockService>, IStockService
 {
-    //public static System.ServiceModel.EndpointAddress EndpointAddress = new System.ServiceModel.EndpointAddress(MobileConfiguration.Settings["ServiceEndpoint"]);
+    
     public static System.ServiceModel.EndpointAddress EndpointAddress = new System.ServiceModel.EndpointAddress("http://10.0.2.89:100/StockService.svc");
     
     public StockServiceClient() : 
@@ -643,7 +1169,7 @@ public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientB
         return retVal;
     }
     
-    public CostPlaceDTO[] GetCostPlaces()
+    public CostPlace[] GetCostPlaces()
     {
         GetCostPlacesRequest request = new GetCostPlacesRequest();
         GetCostPlacesResponse response = this.GetCostPlaces(request);

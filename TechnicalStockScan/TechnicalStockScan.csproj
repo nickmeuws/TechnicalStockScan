@@ -18,6 +18,7 @@
     <NativePlatformName>Windows CE</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
+    <ApplicationIcon>barcode_scanner %281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,7 @@
     <Compile Include="ChildForm.Designer.cs">
       <DependentUpon>ChildForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config\MobileConfiguration.cs" />
     <Compile Include="FullScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +135,15 @@
     </Compile>
     <Compile Include="Webservice\CFClientBase.cs" />
     <Compile Include="Webservice\StockService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="barcode_scanner %281%29.ico" />
+    <Content Include="barcode_scanner.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

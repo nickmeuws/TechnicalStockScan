@@ -7,7 +7,7 @@
 //     de code wordt gegenereerd.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using TechnicalStockScan.Config;
+
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -22,11 +22,9 @@ public interface IStockService
     
     StockItem GetStockItem(string code);
     
-    CostPlaceDTO[] GetCostPlaces();
+    CostPlace[] GetCostPlaces();
     
-    void BookStockMovement(string articleNo, string description, decimal currentStock, int costPlaceId, decimal quantity, string unitOfMeasure, string user);
-    
-    void BookStockCount(string articleNo, string description, decimal currentStock, decimal newStock, string unitOfMeasure, string user);
+    void Book(string itemNr, decimal quanity);
 }
 
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -130,8 +128,8 @@ public partial class CompositeType
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService.DTO")]
-public partial class CostPlaceDTO
+[System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+public partial class CostPlace
 {
     
     private int idField;
@@ -196,8 +194,6 @@ public partial class StockItem
     
     private string no_Field;
     
-    private string shelf_No_Field;
-    
     private System.Nullable<decimal> stockQuantityField;
     
     private bool stockQuantityFieldSpecified;
@@ -234,20 +230,6 @@ public partial class StockItem
     
     /// <opmerkingen/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
-    public string Shelf_No_
-    {
-        get
-        {
-            return this.shelf_No_Field;
-        }
-        set
-        {
-            this.shelf_No_Field = value;
-        }
-    }
-    
-    /// <opmerkingen/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
     public System.Nullable<decimal> StockQuantity
     {
         get
@@ -275,7 +257,7 @@ public partial class StockItem
     }
     
     /// <opmerkingen/>
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=3)]
     public string UOM
     {
         get
@@ -425,14 +407,14 @@ public partial class GetCostPlacesResponse
 {
     
     [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=0)]
-    [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService.DTO")]
-    public CostPlaceDTO[] GetCostPlacesResult;
+    [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/StockService")]
+    public CostPlace[] GetCostPlacesResult;
     
     public GetCostPlacesResponse()
     {
     }
     
-    public GetCostPlacesResponse(CostPlaceDTO[] GetCostPlacesResult)
+    public GetCostPlacesResponse(CostPlace[] GetCostPlacesResult)
     {
         this.GetCostPlacesResult = GetCostPlacesResult;
     }
@@ -440,104 +422,34 @@ public partial class GetCostPlacesResponse
 
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.Xml.Serialization.XmlRootAttribute(ElementName="BookStockMovement", Namespace="http://tempuri.org/")]
-public partial class BookStockMovementRequest
+[System.Xml.Serialization.XmlRootAttribute(ElementName="Book", Namespace="http://tempuri.org/")]
+public partial class BookRequest
 {
     
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=0)]
-    public string articleNo;
+    public string itemNr;
     
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=1)]
-    public string description;
+    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=1)]
+    public decimal quanity;
     
-    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=2)]
-    public decimal currentStock;
-    
-    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=3)]
-    public int costPlaceId;
-    
-    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=4)]
-    public decimal quantity;
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=5)]
-    public string unitOfMeasure;
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=6)]
-    public string user;
-    
-    public BookStockMovementRequest()
+    public BookRequest()
     {
     }
     
-    public BookStockMovementRequest(string articleNo, string description, decimal currentStock, int costPlaceId, decimal quantity, string unitOfMeasure, string user)
+    public BookRequest(string itemNr, decimal quanity)
     {
-        this.articleNo = articleNo;
-        this.description = description;
-        this.currentStock = currentStock;
-        this.costPlaceId = costPlaceId;
-        this.quantity = quantity;
-        this.unitOfMeasure = unitOfMeasure;
-        this.user = user;
+        this.itemNr = itemNr;
+        this.quanity = quanity;
     }
 }
 
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.Xml.Serialization.XmlRootAttribute(ElementName="BookStockMovementResponse", Namespace="http://tempuri.org/")]
-public partial class BookStockMovementResponse
+[System.Xml.Serialization.XmlRootAttribute(ElementName="BookResponse", Namespace="http://tempuri.org/")]
+public partial class BookResponse
 {
     
-    public BookStockMovementResponse()
-    {
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.Xml.Serialization.XmlRootAttribute(ElementName="BookStockCount", Namespace="http://tempuri.org/")]
-public partial class BookStockCountRequest
-{
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=0)]
-    public string articleNo;
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=1)]
-    public string description;
-    
-    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=2)]
-    public decimal currentStock;
-    
-    [System.Xml.Serialization.XmlElementAttribute(Namespace="http://tempuri.org/", Order=3)]
-    public decimal newStock;
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=4)]
-    public string unitOfMeasure;
-    
-    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Namespace="http://tempuri.org/", Order=5)]
-    public string user;
-    
-    public BookStockCountRequest()
-    {
-    }
-    
-    public BookStockCountRequest(string articleNo, string description, decimal currentStock, decimal newStock, string unitOfMeasure, string user)
-    {
-        this.articleNo = articleNo;
-        this.description = description;
-        this.currentStock = currentStock;
-        this.newStock = newStock;
-        this.unitOfMeasure = unitOfMeasure;
-        this.user = user;
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.Xml.Serialization.XmlRootAttribute(ElementName="BookStockCountResponse", Namespace="http://tempuri.org/")]
-public partial class BookStockCountResponse
-{
-    
-    public BookStockCountResponse()
+    public BookResponse()
     {
     }
 }
@@ -546,7 +458,7 @@ public partial class BookStockCountResponse
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientBase<IStockService>, IStockService
 {
-    //public static System.ServiceModel.EndpointAddress EndpointAddress = new System.ServiceModel.EndpointAddress(MobileConfiguration.Settings["ServiceEndpoint"]);
+    
     public static System.ServiceModel.EndpointAddress EndpointAddress = new System.ServiceModel.EndpointAddress("http://10.0.2.89:100/StockService.svc");
     
     public StockServiceClient() : 
@@ -643,45 +555,28 @@ public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientB
         return retVal;
     }
     
-    public CostPlaceDTO[] GetCostPlaces()
+    public CostPlace[] GetCostPlaces()
     {
         GetCostPlacesRequest request = new GetCostPlacesRequest();
         GetCostPlacesResponse response = this.GetCostPlaces(request);
         return response.GetCostPlacesResult;
     }
     
-    private BookStockMovementResponse BookStockMovement(BookStockMovementRequest request)
+    private BookResponse Book(BookRequest request)
     {
         CFInvokeInfo info = new CFInvokeInfo();
-        info.Action = "http://tempuri.org/IStockService/BookStockMovement";
+        info.Action = "http://tempuri.org/IStockService/Book";
         info.RequestIsWrapped = true;
-        info.ReplyAction = "http://tempuri.org/IStockService/BookStockMovementResponse";
+        info.ReplyAction = "http://tempuri.org/IStockService/BookResponse";
         info.ResponseIsWrapped = true;
-        BookStockMovementResponse retVal = base.Invoke<BookStockMovementRequest, BookStockMovementResponse>(info, request);
+        BookResponse retVal = base.Invoke<BookRequest, BookResponse>(info, request);
         return retVal;
     }
     
-    public void BookStockMovement(string articleNo, string description, decimal currentStock, int costPlaceId, decimal quantity, string unitOfMeasure, string user)
+    public void Book(string itemNr, decimal quanity)
     {
-        BookStockMovementRequest request = new BookStockMovementRequest(articleNo, description, currentStock, costPlaceId, quantity, unitOfMeasure, user);
-        BookStockMovementResponse response = this.BookStockMovement(request);
-    }
-    
-    private BookStockCountResponse BookStockCount(BookStockCountRequest request)
-    {
-        CFInvokeInfo info = new CFInvokeInfo();
-        info.Action = "http://tempuri.org/IStockService/BookStockCount";
-        info.RequestIsWrapped = true;
-        info.ReplyAction = "http://tempuri.org/IStockService/BookStockCountResponse";
-        info.ResponseIsWrapped = true;
-        BookStockCountResponse retVal = base.Invoke<BookStockCountRequest, BookStockCountResponse>(info, request);
-        return retVal;
-    }
-    
-    public void BookStockCount(string articleNo, string description, decimal currentStock, decimal newStock, string unitOfMeasure, string user)
-    {
-        BookStockCountRequest request = new BookStockCountRequest(articleNo, description, currentStock, newStock, unitOfMeasure, user);
-        BookStockCountResponse response = this.BookStockCount(request);
+        BookRequest request = new BookRequest(itemNr, quanity);
+        BookResponse response = this.Book(request);
     }
     
     public static System.ServiceModel.Channels.Binding CreateDefaultBinding()
@@ -709,10 +604,8 @@ public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientB
         ApplyProtection("http://tempuri.org/IStockService/GetStockItem", cpr.IncomingEncryptionParts, true);
         ApplyProtection("http://tempuri.org/IStockService/GetCostPlaces", cpr.IncomingSignatureParts, true);
         ApplyProtection("http://tempuri.org/IStockService/GetCostPlaces", cpr.IncomingEncryptionParts, true);
-        ApplyProtection("http://tempuri.org/IStockService/BookStockMovement", cpr.IncomingSignatureParts, true);
-        ApplyProtection("http://tempuri.org/IStockService/BookStockMovement", cpr.IncomingEncryptionParts, true);
-        ApplyProtection("http://tempuri.org/IStockService/BookStockCount", cpr.IncomingSignatureParts, true);
-        ApplyProtection("http://tempuri.org/IStockService/BookStockCount", cpr.IncomingEncryptionParts, true);
+        ApplyProtection("http://tempuri.org/IStockService/Book", cpr.IncomingSignatureParts, true);
+        ApplyProtection("http://tempuri.org/IStockService/Book", cpr.IncomingEncryptionParts, true);
         if ((binding.MessageVersion.Addressing == System.ServiceModel.Channels.AddressingVersion.None))
         {
             ApplyProtection("*", cpr.OutgoingSignatureParts, true);
@@ -730,10 +623,8 @@ public partial class StockServiceClient : Microsoft.Tools.ServiceModel.CFClientB
             ApplyProtection("http://tempuri.org/IStockService/GetStockItemResponse", cpr.OutgoingEncryptionParts, true);
             ApplyProtection("http://tempuri.org/IStockService/GetCostPlacesResponse", cpr.OutgoingSignatureParts, true);
             ApplyProtection("http://tempuri.org/IStockService/GetCostPlacesResponse", cpr.OutgoingEncryptionParts, true);
-            ApplyProtection("http://tempuri.org/IStockService/BookStockMovementResponse", cpr.OutgoingSignatureParts, true);
-            ApplyProtection("http://tempuri.org/IStockService/BookStockMovementResponse", cpr.OutgoingEncryptionParts, true);
-            ApplyProtection("http://tempuri.org/IStockService/BookStockCountResponse", cpr.OutgoingSignatureParts, true);
-            ApplyProtection("http://tempuri.org/IStockService/BookStockCountResponse", cpr.OutgoingEncryptionParts, true);
+            ApplyProtection("http://tempuri.org/IStockService/BookResponse", cpr.OutgoingSignatureParts, true);
+            ApplyProtection("http://tempuri.org/IStockService/BookResponse", cpr.OutgoingEncryptionParts, true);
         }
         this.Parameters.Add(cpr);
     }

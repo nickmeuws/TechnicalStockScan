@@ -13,7 +13,11 @@ namespace TechnicalStockScan
         [MTAThread]
         static void Main()
         {
-            Application.Run(new MainForm());
+            try
+            {
+                Application.Run(new MainForm());
+            }
+            finally{FullScreenForm.SetHHTaskBar();}
         }
     }
 }
